@@ -1,11 +1,13 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using FactoryMethod;
 
 public class PowerPlantBorderController : MonoBehaviour, IBorder<List<PathNode>>
 {
     public SpriteRenderer spriteRenderer { get; set; }
     public List<PathNode> nodesInBorder { get; set; }
+    private PowerPlantFactory powerPlantFactory = new PowerPlantFactory();
     public bool canBuild { get; set; }
     void Start()
     {
@@ -26,6 +28,12 @@ public class PowerPlantBorderController : MonoBehaviour, IBorder<List<PathNode>>
         {
             Move(x, y);
             NotWalkable(x, y);
+
+            if (Input.GetKeyDown(KeyCode.Mouse0) && canBuild)
+            {
+                PathFinding.Instance.GetGrid().GetGridObject(MouseController.Instance.GetMouseWorldPosition()).SetIsWalkable(false);
+                powerPlantFactory.SpawnBuild(transform.position, nodesInBorder);
+            }
         }
     }
 

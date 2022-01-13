@@ -7,7 +7,7 @@ namespace FactoryMethod
 {
     public class BarrackFactory : _BuildFactory<List<PathNode>>
     {
-        public override GameObject build => Resources.Load<GameObject>("Prefabs/Barrack");
+        public override GameObject build => Resources.Load<GameObject>("Prefabs/BarrackUtil");
         public override Transform buildParent => GameObject.FindGameObjectWithTag("BarrackParent").transform;
         public override void SpawnBuild(Vector3 spawnPos, List<PathNode> notWalkableNode)
         {

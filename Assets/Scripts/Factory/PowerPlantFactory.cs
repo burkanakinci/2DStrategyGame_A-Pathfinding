@@ -7,7 +7,7 @@ namespace FactoryMethod
 {
     public class PowerPlantFactory : _BuildFactory<List<PathNode>>
     {
-        public override GameObject build => Resources.Load<GameObject>("Prefabs/PowerPlant");
+        public override GameObject build => Resources.Load<GameObject>("Prefabs/PowerPlantUtil");
         public override Transform buildParent => GameObject.FindGameObjectWithTag("PowerPlantParent").transform;
         public override void SpawnBuild(Vector3 spawnPos, List<PathNode> notWalkableNode)
         {

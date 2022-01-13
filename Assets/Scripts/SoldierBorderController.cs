@@ -19,11 +19,7 @@ public class SoldierBorderController : MonoBehaviour, IBorder<PathNode>
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Mouse0))
-        {
-            PathFinding.Instance.GetGrid().GetGridObject(MouseController.Instance.GetMouseWorldPosition()).SetIsWalkable(false);
-            soldierFactory.SpawnBuild(transform.position, PathFinding.Instance.GetGrid().GetGridObject(MouseController.Instance.GetMouseWorldPosition()));
-        }
+
 
         PathFinding.Instance.GetGrid().GetXY(MouseController.Instance.GetMouseWorldPosition(), out int x, out int y);
 
@@ -32,6 +28,12 @@ public class SoldierBorderController : MonoBehaviour, IBorder<PathNode>
         {
             Move(x, y);
             NotWalkable(x, y);
+
+            if (Input.GetKeyDown(KeyCode.Mouse0) && canBuild)
+            {
+                PathFinding.Instance.GetGrid().GetGridObject(MouseController.Instance.GetMouseWorldPosition()).SetIsWalkable(false);
+                soldierFactory.SpawnBuild(transform.position, PathFinding.Instance.GetGrid().GetGridObject(MouseController.Instance.GetMouseWorldPosition()));
+            }
         }
     }
     public void Move(int x, int y)

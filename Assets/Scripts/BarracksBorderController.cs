@@ -8,6 +8,7 @@ public class BarracksBorderController : MonoBehaviour, IBorder<List<PathNode>>
     public SpriteRenderer spriteRenderer { get; set; }
     public List<PathNode> nodesInBorder { get; set; }
     public bool canBuild { get; set; }
+    private BarrackFactory barrackFactory = new BarrackFactory();
 
     void Start()
     {
@@ -20,15 +21,19 @@ public class BarracksBorderController : MonoBehaviour, IBorder<List<PathNode>>
 
     void Update()
     {
-
         PathFinding.Instance.GetGrid().GetXY(MouseController.Instance.GetMouseWorldPosition(), out int x, out int y);
-
         if (2 <= x && x < PathFinding.Instance.GetGrid().GetWidth() - 1 &&
             2 <= y && y < PathFinding.Instance.GetGrid().GetHeight() - 1)
         {
             Move(x, y);
 
             NotWalkable(x, y);
+
+            if (Input.GetKeyDown(KeyCode.Mouse0) && canBuild)
+            {
+                PathFinding.Instance.GetGrid().GetGridObject(MouseController.Instance.GetMouseWorldPosition()).SetIsWalkable(false);
+                barrackFactory.SpawnBuild(transform.position, nodesInBorder);
+            }
         }
     }
     public void Move(int x, int y)
