@@ -12,6 +12,8 @@ public class PowerPlantBorderController : MonoBehaviour, IBorder<List<PathNode>>
         spriteRenderer = GetComponent<SpriteRenderer>();
 
         spriteRenderer.color = Color.green;
+
+        nodesInBorder = new List<PathNode>();
     }
 
     void Update()
@@ -43,7 +45,7 @@ public class PowerPlantBorderController : MonoBehaviour, IBorder<List<PathNode>>
         {
             for (int j = y; j >= y - 1; j--)
             {
-                nodesInBorder.Add(PathFinding.Instance.GetGrid().GetGridObject(x, y));
+                nodesInBorder.Add(PathFinding.Instance.GetGrid().GetGridObject(i, j));
                 if (!nodesInBorder[nodesInBorder.Count - 1].GetIsWalkable())
                 {
                     spriteRenderer.color = Color.red;

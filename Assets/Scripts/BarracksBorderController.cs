@@ -14,6 +14,8 @@ public class BarracksBorderController : MonoBehaviour, IBorder<List<PathNode>>
         spriteRenderer = GetComponent<SpriteRenderer>();
 
         spriteRenderer.color = Color.green;
+
+        nodesInBorder = new List<PathNode>();
     }
 
     void Update()
@@ -25,14 +27,13 @@ public class BarracksBorderController : MonoBehaviour, IBorder<List<PathNode>>
             2 <= y && y < PathFinding.Instance.GetGrid().GetHeight() - 1)
         {
             Move(x, y);
+
             NotWalkable(x, y);
         }
     }
     public void Move(int x, int y)
     {
-
         transform.position = PathFinding.Instance.GetGrid().GetWorldPosition(x, y);
-
     }
     public List<PathNode> NotWalkable(int x, int y)
     {
@@ -45,7 +46,7 @@ public class BarracksBorderController : MonoBehaviour, IBorder<List<PathNode>>
         {
             for (int j = y + 1; j >= y - 2; j--)
             {
-                nodesInBorder.Add(PathFinding.Instance.GetGrid().GetGridObject(x, y));
+                nodesInBorder.Add(PathFinding.Instance.GetGrid().GetGridObject(i, j));
                 if (!nodesInBorder[nodesInBorder.Count - 1].GetIsWalkable())
                 {
                     spriteRenderer.color = Color.red;
