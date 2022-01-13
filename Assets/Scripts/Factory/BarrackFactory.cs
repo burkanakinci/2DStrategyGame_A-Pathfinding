@@ -5,7 +5,7 @@ using UnityEngine;
 
 namespace FactoryMethod
 {
-    public class BarrackFactory : _BuildFactory
+    public class BarrackFactory : _BuildFactory<List<PathNode>>
     {
         public override GameObject build => Resources.Load<GameObject>("Prefabs/Barrack");
         public override Transform buildParent => GameObject.FindGameObjectWithTag("BarrackParent").transform;

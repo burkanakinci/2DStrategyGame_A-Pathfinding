@@ -2,10 +2,11 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PowerPlantBorderController : MonoBehaviour
+public class PowerPlantBorderController : MonoBehaviour, IBorder<List<PathNode>>
 {
-    private SpriteRenderer spriteRenderer;
-    private List<PathNode> pathsInBorder = new List<PathNode>();
+    public SpriteRenderer spriteRenderer { get; set; }
+    public List<PathNode> nodesInBorder { get; set; }
+    public bool canBuild { get; set; }
     void Start()
     {
         spriteRenderer = GetComponent<SpriteRenderer>();
@@ -18,35 +19,38 @@ public class PowerPlantBorderController : MonoBehaviour
 
         PathFinding.Instance.GetGrid().GetXY(MouseController.Instance.GetMouseWorldPosition(), out int x, out int y);
 
-        if (Input.GetKey(KeyCode.Y))
+        if (2 <= x && x < PathFinding.Instance.GetGrid().GetWidth() &&
+            1 <= y && y < PathFinding.Instance.GetGrid().GetHeight())
         {
-
-
-            if (2 <= x && x < PathFinding.Instance.GetGrid().GetWidth() &&
-                1 <= y && y < PathFinding.Instance.GetGrid().GetHeight())
-            {
-                transform.position =
-                                 (PathFinding.Instance.GetGrid().GetWorldPosition(x, y) - Vector3.right * PathFinding.Instance.GetGrid().GetCellSize() * 0.5f);
-
-            }
-
+            Move(x, y);
+            NotWalkable(x, y);
         }
     }
 
-    private List<PathNode> asd()
+    public void Move(int x, int y)
     {
-        PathFinding.Instance.GetGrid().GetXY(MouseController.Instance.GetMouseWorldPosition(), out int x, out int y);
+        transform.position =
+        (PathFinding.Instance.GetGrid().GetWorldPosition(x, y) - Vector3.right * PathFinding.Instance.GetGrid().GetCellSize() * 0.5f);
+    }
+    public List<PathNode> NotWalkable(int x, int y)
+    {
+        nodesInBorder.Clear();
 
-        pathsInBorder.Clear();
+        spriteRenderer.color = Color.green;
+        canBuild = true;
 
         for (int i = x; i >= x - 2; i--)
         {
             for (int j = y; j >= y - 1; j--)
             {
-                pathsInBorder.Add(PathFinding.Instance.GetNode(i, j));
+                nodesInBorder.Add(PathFinding.Instance.GetGrid().GetGridObject(x, y));
+                if (!nodesInBorder[nodesInBorder.Count - 1].GetIsWalkable())
+                {
+                    spriteRenderer.color = Color.red;
+                    canBuild = false;
+                }
             }
         }
-
-        return pathsInBorder;
+        return nodesInBorder;
     }
 }

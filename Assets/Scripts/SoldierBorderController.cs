@@ -3,12 +3,13 @@ using System.Collections.Generic;
 using UnityEngine;
 using FactoryMethod;
 
-public class SoldierBorderController : MonoBehaviour
+public class SoldierBorderController : MonoBehaviour, IBorder<PathNode>
 {
 
-    private SpriteRenderer spriteRenderer;
+    public SpriteRenderer spriteRenderer { get; set; }
+    public PathNode nodesInBorder { get; set; }
+    public bool canBuild { get; set; }
     private SoldierFactory soldierFactory = new SoldierFactory();
-    private List<PathNode> pathsInBorder = new List<PathNode>();
     void Start()
     {
         spriteRenderer = GetComponent<SpriteRenderer>();
@@ -20,26 +21,36 @@ public class SoldierBorderController : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Mouse0))
         {
-            pathsInBorder.Clear();
-            pathsInBorder.Add(PathFinding.Instance.GetGrid().GetGridObject(MouseController.Instance.GetMouseWorldPosition()));
             PathFinding.Instance.GetGrid().GetGridObject(MouseController.Instance.GetMouseWorldPosition()).SetIsWalkable(false);
-            soldierFactory.SpawnBuild(transform.position, pathsInBorder);
+            soldierFactory.SpawnBuild(transform.position, PathFinding.Instance.GetGrid().GetGridObject(MouseController.Instance.GetMouseWorldPosition()));
         }
 
         PathFinding.Instance.GetGrid().GetXY(MouseController.Instance.GetMouseWorldPosition(), out int x, out int y);
 
+        if (0 <= x && x < PathFinding.Instance.GetGrid().GetWidth() &&
+            0 <= y && y < PathFinding.Instance.GetGrid().GetHeight())
+        {
+            Move(x, y);
+            NotWalkable(x, y);
+        }
+    }
+    public void Move(int x, int y)
+    {
         transform.position =
              PathFinding.Instance.GetGrid().GetWorldPosition(x, y) + Vector3.one * PathFinding.Instance.GetGrid().GetCellSize() * 0.5f;
-
-        if (PathFinding.Instance.GetGrid().GetGridObject(MouseController.Instance.GetMouseWorldPosition()).GetIsWalkable())
+    }
+    public PathNode NotWalkable(int x, int y)
+    {
+        if (!PathFinding.Instance.GetNode(x, y).GetIsWalkable())
         {
-            spriteRenderer.color = Color.green;
+            spriteRenderer.color = Color.red;
+            canBuild = false;
         }
         else
         {
-            spriteRenderer.color = Color.red;
+            spriteRenderer.color = Color.green;
+            canBuild = true;
         }
-
-
+        return nodesInBorder;
     }
 }

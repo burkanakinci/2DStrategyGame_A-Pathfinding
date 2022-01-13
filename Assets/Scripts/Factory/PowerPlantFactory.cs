@@ -5,7 +5,7 @@ using UnityEngine;
 
 namespace FactoryMethod
 {
-    public class PowerPlantFactory : _BuildFactory
+    public class PowerPlantFactory : _BuildFactory<List<PathNode>>
     {
         public override GameObject build => Resources.Load<GameObject>("Prefabs/PowerPlant");
         public override Transform buildParent => GameObject.FindGameObjectWithTag("PowerPlantParent").transform;
