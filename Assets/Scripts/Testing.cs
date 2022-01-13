@@ -4,23 +4,35 @@ using UnityEngine;
 
 public class Testing : MonoBehaviour
 {
-    Vector3 mouseWorldPosition;
     PathFinding pathFinding;
     public SoldierMovement soldierMovement;
+    private static Testing instance = null;
+    public static Testing Instance
+    {
+        get
+        {
+            if (instance == null)
+            {
+                instance = new GameObject("Testing").AddComponent<Testing>();
+            }
+            return instance;
+        }
+    }
+    private void Awake()
+    {
+        instance = this;
+    }
     private void Start()
     {
         soldierMovement = FindObjectOfType<SoldierMovement>();
         pathFinding = new PathFinding(10, 14, transform.position);
-
     }
     private void Update()
     {
         if (Input.GetKeyDown(KeyCode.Mouse0))
         {
-            mouseWorldPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-            mouseWorldPosition.z = 0;
 
-            pathFinding.GetGrid().GetXY(mouseWorldPosition, out int x, out int y);
+            pathFinding.GetGrid().GetXY(MouseController.Instance.GetMouseWorldPosition(), out int x, out int y);
 
             if (0 <= x && x < PathFinding.Instance.GetGrid().GetWidth() &&
                 0 <= y && y < PathFinding.Instance.GetGrid().GetHeight())
@@ -39,17 +51,15 @@ public class Testing : MonoBehaviour
                                         5f);
                     }
                 }
-                soldierMovement.SetTargetPosition(mouseWorldPosition);
+                soldierMovement.SetTargetPosition(MouseController.Instance.GetMouseWorldPosition());
             }
 
 
         }
         if (Input.GetKeyDown(KeyCode.Mouse1))
         {
-            mouseWorldPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-            mouseWorldPosition.z = 0;
 
-            pathFinding.GetGrid().GetXY(mouseWorldPosition, out int x, out int y);
+            pathFinding.GetGrid().GetXY(MouseController.Instance.GetMouseWorldPosition(), out int x, out int y);
             pathFinding.GetNode(x, y).SetIsWalkable(!pathFinding.GetNode(x, y).GetIsWalkable());
 
         }

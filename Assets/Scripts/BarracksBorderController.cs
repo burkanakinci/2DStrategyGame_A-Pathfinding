@@ -1,10 +1,10 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using FactoryMethod;
 
 public class BarracksBorderController : MonoBehaviour
 {
-    Vector3 mouseWorldPosition;
     private SpriteRenderer spriteRenderer;
     void Start()
     {
@@ -15,10 +15,10 @@ public class BarracksBorderController : MonoBehaviour
 
     void Update()
     {
-        mouseWorldPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-        mouseWorldPosition.z = 0;
 
-        PathFinding.Instance.GetGrid().GetXY(mouseWorldPosition, out int x, out int y);
+        PathFinding.Instance.GetGrid().GetXY(MouseController.Instance.GetMouseWorldPosition(), out int x, out int y);
+
+        
 
         if (Input.GetKey(KeyCode.Y))
         {

@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class PowerPlantBorderController : MonoBehaviour
 {
-    Vector3 mouseWorldPosition;
     private SpriteRenderer spriteRenderer;
+    private List<PathNode> pathsInBorder = new List<PathNode>();
     void Start()
     {
         spriteRenderer = GetComponent<SpriteRenderer>();
@@ -15,10 +15,8 @@ public class PowerPlantBorderController : MonoBehaviour
 
     void Update()
     {
-        mouseWorldPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-        mouseWorldPosition.z = 0;
 
-        PathFinding.Instance.GetGrid().GetXY(mouseWorldPosition, out int x, out int y);
+        PathFinding.Instance.GetGrid().GetXY(MouseController.Instance.GetMouseWorldPosition(), out int x, out int y);
 
         if (Input.GetKey(KeyCode.Y))
         {
@@ -30,23 +28,25 @@ public class PowerPlantBorderController : MonoBehaviour
                 transform.position =
                                  (PathFinding.Instance.GetGrid().GetWorldPosition(x, y) - Vector3.right * PathFinding.Instance.GetGrid().GetCellSize() * 0.5f);
 
-                for (int i = x; i >= x - 2; i--)
-                {
-                    for (int j = y; j >= y - 1; j--)
-                    {
-                        if (!PathFinding.Instance.GetNode(i, j).GetIsWalkable())
-                        {
-                            spriteRenderer.color = Color.red;
-                            return;
-                        }
-                        else if (spriteRenderer.color != Color.green)
-                        {
-                            spriteRenderer.color = Color.green;
-                        }
-                    }
-                }
             }
 
         }
+    }
+
+    private List<PathNode> asd()
+    {
+        PathFinding.Instance.GetGrid().GetXY(MouseController.Instance.GetMouseWorldPosition(), out int x, out int y);
+
+        pathsInBorder.Clear();
+
+        for (int i = x; i >= x - 2; i--)
+        {
+            for (int j = y; j >= y - 1; j--)
+            {
+                pathsInBorder.Add(PathFinding.Instance.GetNode(i, j));
+            }
+        }
+
+        return pathsInBorder;
     }
 }

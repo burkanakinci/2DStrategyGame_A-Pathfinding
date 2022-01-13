@@ -61,4 +61,7 @@ public class SoldierMovement : MonoBehaviour
             pathVectorList.RemoveAt(0);
         }
     }
+    private void OnMouseDown()
+    {Debug.Log(this.gameObject.name+" is Selected.");
+    }
 }
