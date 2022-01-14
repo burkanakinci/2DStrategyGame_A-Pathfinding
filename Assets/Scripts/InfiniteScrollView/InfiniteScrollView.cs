@@ -54,31 +54,33 @@ public class InfiniteScrollView : MonoBehaviour, IBeginDragHandler, IDragHandler
         {
             spawnedTransform = ObjectPool.Instance.SpawnScrollObject(tempTransformImage.gameObject, scrollContent.transform);
         }
-        switch (positiveDrag)
+        if (positiveDrag)
         {
-            case true:
-                if (spawnedTransform != null)
-                {
-                    spawnedTransform.SetSiblingIndex(0);
-                    scrollContent.ContentAlign();
+            
+            if (spawnedTransform != null)
+            {
+                spawnedTransform.SetSiblingIndex(0);
+                scrollContent.ContentAlign();
 
-                    spawnedTransform = null;
-                }
-                if (tempTransformImage != scrollContent.transform.GetChild(scrollContent.transform.childCount - 1))
-                    tempTransformImage = scrollContent.transform.GetChild(scrollContent.transform.childCount - 1);
-                break;
-            case false:
-                if (spawnedTransform != null)
-                {
-                    spawnedTransform.SetSiblingIndex(scrollContent.transform.childCount - 1);
-                    scrollContent.ContentAlign();
-
-                    spawnedTransform = null;
-                }
-                if (tempTransformImage != scrollContent.transform.GetChild(0))
-                    tempTransformImage = scrollContent.transform.GetChild(0);
-                break;
+                spawnedTransform = null;
+            }
+            if (tempTransformImage != scrollContent.transform.GetChild(scrollContent.transform.childCount - 1))
+                tempTransformImage = scrollContent.transform.GetChild(scrollContent.transform.childCount - 1);
         }
+        else
+        {
+
+            if (spawnedTransform != null)
+            {
+                spawnedTransform.SetSiblingIndex(scrollContent.transform.childCount - 1);
+                scrollContent.ContentAlign();
+
+                spawnedTransform = null;
+            }
+            if (tempTransformImage != scrollContent.transform.GetChild(0))
+                tempTransformImage = scrollContent.transform.GetChild(0);
+        }
+
     }
 
 }
