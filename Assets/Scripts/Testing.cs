@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Testing : MonoBehaviour
 {
+    private Vector3 tempPos;
     PathFinding pathFinding;
     public SoldierMovement soldierMovement;
     private static Testing instance = null;
@@ -30,13 +31,10 @@ public class Testing : MonoBehaviour
     {
         if (soldierMovement != null)
         {
-            if (soldierMovement.soldierState == SoldierMovement.SoldierState.Build)
-            {
-                soldierMovement.soldierState = SoldierMovement.SoldierState.Selected;
-            }
-            else if (Input.GetKeyDown(KeyCode.Mouse0) && soldierMovement.soldierState == SoldierMovement.SoldierState.Selected)
-            {
 
+            if (Input.GetKeyDown(KeyCode.Mouse0) && pathFinding.GetGrid().GetGridObject(soldierMovement.transform.position) != pathFinding.GetGrid().GetGridObject(MouseController.Instance.GetMouseWorldPosition()))
+            {
+                tempPos = MouseController.Instance.GetMouseWorldPosition();
                 pathFinding.GetGrid().GetXY(MouseController.Instance.GetMouseWorldPosition(), out int x, out int y);
 
                 if (0 <= x && x < PathFinding.Instance.GetGrid().GetWidth() &&
@@ -56,9 +54,13 @@ public class Testing : MonoBehaviour
                                             5f);
                         }
                     }
-                    soldierMovement.SetTargetPosition(MouseController.Instance.GetMouseWorldPosition());
+
+                    //soldierMovement.soldierState = SoldierMovement.SoldierState.Move;
                 }
             }
+
+            soldierMovement.SetTargetPosition(tempPos);
+
         }
     }
 }

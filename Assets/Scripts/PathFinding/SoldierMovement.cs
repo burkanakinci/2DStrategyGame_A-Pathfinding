@@ -4,21 +4,9 @@ using UnityEngine;
 
 public class SoldierMovement : MonoBehaviour
 {
-    public enum SoldierState
-    {
-        Build,
-        Selected,
-        Move
-    }
-    public SoldierState soldierState;
     private int currentPathIndex;
     [SerializeField] private List<Vector3> pathVectorList;
     private const float speed = 2f;
-
-    private void OnEnable()
-    {
-        soldierState = SoldierState.Build;
-    }
     public void SetTargetPosition()
     {
         currentPathIndex = 0;
@@ -31,7 +19,7 @@ public class SoldierMovement : MonoBehaviour
 
     private void Update()
     {
-        if (pathVectorList != null && soldierState == SoldierState.Move)
+        if (pathVectorList != null)
             HandleMovement();
     }
 
@@ -43,6 +31,7 @@ public class SoldierMovement : MonoBehaviour
             Vector3 targetPosition = pathVectorList[currentPathIndex];
             if (transform.position != targetPosition)
             {
+
                 Vector3 moveDir = (targetPosition - transform.position).normalized;
 
                 float distanceBefore = Vector3.Distance(transform.position, targetPosition);
@@ -62,10 +51,10 @@ public class SoldierMovement : MonoBehaviour
 
     private void StopMoving()
     {
-        PathFinding.Instance.GetGrid().GetGridObject(transform.position).SetIsWalkable(false);
         Testing.Instance.soldierMovement = null;
-        soldierState = SoldierState.Build;
+        PathFinding.Instance.GetGrid().GetGridObject(transform.position).SetIsWalkable(false);
         pathVectorList = null;
+
     }
 
     public void SetTargetPosition(Vector3 targetPosition)
@@ -80,11 +69,7 @@ public class SoldierMovement : MonoBehaviour
     }
     private void OnMouseDown()
     {
-        if (soldierState == SoldierState.Build)
-        {
-            PathFinding.Instance.GetGrid().GetGridObject(MouseController.Instance.GetMouseWorldPosition()).SetIsWalkable(true);
-            //soldierState = SoldierState.Selected;
-            Testing.Instance.soldierMovement = this;
-        }
+        PathFinding.Instance.GetGrid().GetGridObject(MouseController.Instance.GetMouseWorldPosition()).SetIsWalkable(true);
+        Testing.Instance.soldierMovement = this;
     }
 }
