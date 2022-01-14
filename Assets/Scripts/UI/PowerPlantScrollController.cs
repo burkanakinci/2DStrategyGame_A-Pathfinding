@@ -9,4 +9,8 @@ public class PowerPlantScrollController : MonoBehaviour, IPointerClickHandler
     {
         UIController.Instance.scrollItemController.ClickPowerPlant();
     }
+    private void OnDisable()
+    {
+        ObjectPool.Instance.scrollPowerPlantPool.Add(this.gameObject);
+    }
 }

@@ -9,4 +9,8 @@ public class SoldierScrollController : MonoBehaviour, IPointerClickHandler
     {
         UIController.Instance.scrollItemController.ClickSoldier();
     }
+    private void OnDisable()
+    {
+        ObjectPool.Instance.scrollSoldierPool.Add(this.gameObject);
+    }
 }

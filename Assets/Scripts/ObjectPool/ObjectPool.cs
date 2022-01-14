@@ -21,12 +21,12 @@ public class ObjectPool : MonoBehaviour
     {
         instance = this;
     }
-    [SerializeField] private List<GameObject> scrollSoldierPool = new List<GameObject>();
-    [SerializeField] private GameObject scrollSoldiers;
-    [SerializeField] private List<GameObject> scrollBarrackPool = new List<GameObject>();
-    [SerializeField] private GameObject scrollBarrack;
-    [SerializeField] private List<GameObject> scrollPowerPlantPool = new List<GameObject>();
-    [SerializeField] private GameObject scrollPowerPlant;
+    public List<GameObject> scrollSoldierPool = new List<GameObject>();
+    public GameObject scrollSoldiers;
+    public List<GameObject> scrollBarrackPool = new List<GameObject>();
+    public GameObject scrollBarrack;
+    public List<GameObject> scrollPowerPlantPool = new List<GameObject>();
+    public GameObject scrollPowerPlant;
     private Transform tempTransform;
     [SerializeField] private GameObject tempGameObject;
 

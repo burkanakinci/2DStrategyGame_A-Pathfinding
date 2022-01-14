@@ -9,4 +9,8 @@ public class BarrackScrollController : MonoBehaviour, IPointerClickHandler
     {
         UIController.Instance.scrollItemController.ClickBarrack();
     }
+    private void OnDisable()
+    {
+        ObjectPool.Instance.scrollBarrackPool.Add(this.gameObject);
+    }
 }
