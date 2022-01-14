@@ -33,6 +33,7 @@ public class BarracksBorderController : MonoBehaviour, IBorder<List<PathNode>>
             {
                 PathFinding.Instance.GetGrid().GetGridObject(MouseController.Instance.GetMouseWorldPosition()).SetIsWalkable(false);
                 barrackFactory.SpawnBuild(transform.position, nodesInBorder);
+                this.gameObject.SetActive(false);
             }
         }
     }

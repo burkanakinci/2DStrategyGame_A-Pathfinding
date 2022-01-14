@@ -7,6 +7,9 @@ TagManager:
   - SoldierParent
   - BarrackParent
   - PowerPlantParent
+  - SoldierBorder
+  - BarrackBorder
+  - PowerPlantBorder
   layers:
   - Default
   - TransparentFX

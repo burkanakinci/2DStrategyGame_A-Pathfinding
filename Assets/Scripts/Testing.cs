@@ -57,7 +57,6 @@ public class Testing : MonoBehaviour
                         }
                     }
                     soldierMovement.SetTargetPosition(MouseController.Instance.GetMouseWorldPosition());
-                    soldierMovement.soldierState = SoldierMovement.SoldierState.Move;
                 }
             }
         }

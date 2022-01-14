@@ -20,6 +20,7 @@ public class UIController : MonoBehaviour
             return instance;
         }
     }
+    public ScrollItemController scrollItemController;
     [SerializeField] private Image buildImage;
     [SerializeField] private TMPro.TextMeshProUGUI buildNameText;
     [SerializeField] private Image productionImage;
@@ -27,6 +28,10 @@ public class UIController : MonoBehaviour
     private void Awake()
     {
         instance = this;
+    }
+    private void Start()
+    {
+        scrollItemController = GetComponent<ScrollItemController>();
     }
 
     public void ShowInformation(Sprite buildSprite, string buildName, Sprite productionSprite, string productionName)

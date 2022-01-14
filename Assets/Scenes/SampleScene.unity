@@ -215,11 +215,11 @@ GameObject:
   - component: {fileID: 2401600}
   m_Layer: 0
   m_Name: BarracksBorder
-  m_TagString: Untagged
+  m_TagString: BarrackBorder
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!212 &2401598
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -387,6 +387,7 @@ GameObject:
   m_Component:
   - component: {fileID: 15655123}
   - component: {fileID: 15655122}
+  - component: {fileID: 15655124}
   m_Layer: 0
   m_Name: UIController
   m_TagString: Untagged
@@ -406,6 +407,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 282bcd6be6e6e7f468bf7097bf47da86, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  scrollItemController: {fileID: 0}
   buildImage: {fileID: 347092013}
   buildNameText: {fileID: 108246007}
   productionImage: {fileID: 1859808469}
@@ -424,6 +426,18 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &15655124
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 15655121}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 232c552fde6a1604a85b648245944cb4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &47683363
 GameObject:
   m_ObjectHideFlags: 0
@@ -3308,7 +3322,8 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 198140218145466423, guid: 1cc9c07e8e3dfef4597537cd770fba70, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 1cc9c07e8e3dfef4597537cd770fba70, type: 3}
 --- !u!224 &468759254 stripped
 RectTransform:
@@ -5451,11 +5466,11 @@ GameObject:
   - component: {fileID: 803331800}
   m_Layer: 0
   m_Name: SoldierBorder
-  m_TagString: Untagged
+  m_TagString: SoldierBorder
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &803331800
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6674,7 +6689,7 @@ MonoBehaviour:
   m_Elasticity: 0.1
   m_Inertia: 1
   m_DecelerationRate: 0.135
-  m_ScrollSensitivity: 1
+  m_ScrollSensitivity: 0.25
   m_Viewport: {fileID: 2101297010}
   m_HorizontalScrollbar: {fileID: 0}
   m_VerticalScrollbar: {fileID: 0}
@@ -6734,11 +6749,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6e62b07872ef1d742b7e7b2c96a1fcc9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Content: {fileID: 863791288}
-  itemsOnScene: []
-  image: {fileID: 1280533}
   scrollContent: {fileID: 863791290}
-  outOfBoundsThreshold: 0
   positiveDrag: 0
 --- !u!1 &1095828798
 GameObject:
@@ -8364,7 +8375,8 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 8228083095245591836, guid: a3ee336d09674734e844e59e05d67933, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: a3ee336d09674734e844e59e05d67933, type: 3}
 --- !u!224 &1315054939 stripped
 RectTransform:
@@ -9335,11 +9347,11 @@ GameObject:
   - component: {fileID: 1429514758}
   m_Layer: 0
   m_Name: PowerBlantBorder
-  m_TagString: Untagged
+  m_TagString: PowerPlantBorder
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!212 &1429514756
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -13738,7 +13750,8 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 198140218145466423, guid: 1cc9c07e8e3dfef4597537cd770fba70, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 1cc9c07e8e3dfef4597537cd770fba70, type: 3}
 --- !u!1001 &7716221040931538714
 PrefabInstance:
@@ -13976,5 +13989,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 8228083095245591836, guid: a3ee336d09674734e844e59e05d67933, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: a3ee336d09674734e844e59e05d67933, type: 3}

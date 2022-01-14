@@ -33,6 +33,7 @@ public class PowerPlantBorderController : MonoBehaviour, IBorder<List<PathNode>>
             {
                 PathFinding.Instance.GetGrid().GetGridObject(MouseController.Instance.GetMouseWorldPosition()).SetIsWalkable(false);
                 powerPlantFactory.SpawnBuild(transform.position, nodesInBorder);
+                this.gameObject.SetActive(false);
             }
         }
     }

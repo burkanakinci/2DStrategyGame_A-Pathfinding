@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 8228083095245591839}
   - component: {fileID: 8228083095245591837}
   - component: {fileID: 8228083095245591838}
-  - component: {fileID: 8228083095245591836}
+  - component: {fileID: 5677169454242541397}
   m_Layer: 5
   m_Name: SoldierScroll
   m_TagString: Untagged
@@ -75,7 +75,7 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!114 &8228083095245591836
+--- !u!114 &5677169454242541397
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -84,6 +84,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 8228083095245591832}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6820216f63ef93447b97e1014cdd17a8, type: 3}
+  m_Script: {fileID: 11500000, guid: 8f943809db659fc468eaab8a3912626e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 

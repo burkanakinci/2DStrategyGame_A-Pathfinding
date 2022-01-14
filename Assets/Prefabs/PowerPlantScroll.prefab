@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 198140218145466420}
   - component: {fileID: 198140218145466422}
   - component: {fileID: 198140218145466421}
-  - component: {fileID: 198140218145466423}
+  - component: {fileID: 1437570351804636765}
   m_Layer: 5
   m_Name: PowerPlantScroll
   m_TagString: Untagged
@@ -75,7 +75,7 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!114 &198140218145466423
+--- !u!114 &1437570351804636765
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -84,6 +84,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 198140218145466419}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1f9d4a2e14ea7ea439b6ebece1044032, type: 3}
+  m_Script: {fileID: 11500000, guid: 93de69759adf5684bb18d5876e7b1cee, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 

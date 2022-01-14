@@ -33,6 +33,7 @@ public class SoldierBorderController : MonoBehaviour, IBorder<PathNode>
             {
                 PathFinding.Instance.GetGrid().GetGridObject(MouseController.Instance.GetMouseWorldPosition()).SetIsWalkable(false);
                 soldierFactory.SpawnBuild(transform.position, PathFinding.Instance.GetGrid().GetGridObject(MouseController.Instance.GetMouseWorldPosition()));
+                this.gameObject.SetActive(false);
             }
 
         }
