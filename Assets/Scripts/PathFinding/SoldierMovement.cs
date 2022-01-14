@@ -1,5 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
 
 public class SoldierMovement : MonoBehaviour
@@ -31,7 +30,6 @@ public class SoldierMovement : MonoBehaviour
             Vector3 targetPosition = pathVectorList[currentPathIndex];
             if ((Vector3.Distance(transform.position, targetPosition) > 0.1f) && (PathFinding.Instance.GetGrid().GetGridObject(transform.position) != PathFinding.Instance.GetGrid().GetGridObject(targetPosition)))
             {
-                Debug.Log(Vector3.Distance(transform.position, targetPosition));
                 Vector3 moveDir = (targetPosition - transform.position).normalized;
 
                 float distanceBefore = Vector3.Distance(transform.position, targetPosition);

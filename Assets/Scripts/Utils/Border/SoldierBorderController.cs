@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using FactoryMethod;
 
 public class SoldierBorderController : MonoBehaviour, IBorder<PathNode>
