@@ -60,7 +60,6 @@ public class Testing : MonoBehaviour
             }
 
             soldierMovement.SetTargetPosition(tempPos);
-
         }
     }
 }

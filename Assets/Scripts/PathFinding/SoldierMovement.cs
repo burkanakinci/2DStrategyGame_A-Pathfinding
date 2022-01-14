@@ -6,7 +6,7 @@ public class SoldierMovement : MonoBehaviour
 {
     private int currentPathIndex;
     [SerializeField] private List<Vector3> pathVectorList;
-    private const float speed = 2f;
+    private const float speed = 3f;
     public void SetTargetPosition()
     {
         currentPathIndex = 0;
@@ -29,9 +29,9 @@ public class SoldierMovement : MonoBehaviour
         if (pathVectorList != null && pathVectorList.Count > 0)
         {
             Vector3 targetPosition = pathVectorList[currentPathIndex];
-            if (transform.position != targetPosition)
+            if ((transform.position != targetPosition) && (PathFinding.Instance.GetGrid().GetGridObject(transform.position) != PathFinding.Instance.GetGrid().GetGridObject(targetPosition)))
             {
-
+                Debug.Log(Vector3.Distance(transform.position, targetPosition));
                 Vector3 moveDir = (targetPosition - transform.position).normalized;
 
                 float distanceBefore = Vector3.Distance(transform.position, targetPosition);
@@ -45,6 +45,10 @@ public class SoldierMovement : MonoBehaviour
                     StopMoving();
                 }
             }
+        }
+        else
+        {
+            StopMoving();
         }
 
     }
