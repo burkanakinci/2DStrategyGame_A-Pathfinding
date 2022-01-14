@@ -11,6 +11,6 @@ public class PowerPlantScrollController : MonoBehaviour, IPointerClickHandler
     }
     private void OnDisable()
     {
-        ObjectPool.Instance.scrollPowerPlantPool.Add(this.gameObject);
+        //ObjectPool.Instance.scrollPowerPlantPool.Add(this.gameObject);
     }
 }
