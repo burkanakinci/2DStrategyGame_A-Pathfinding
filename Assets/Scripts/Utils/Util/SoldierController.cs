@@ -9,5 +9,8 @@ public class SoldierController : MonoBehaviour
     private void OnMouseDown()
     {
         UIController.Instance.ShowInformation(soldierData.buildSprite, soldierData.buildName, soldierData.productSprite, soldierData.productName);
+
+        PathFinding.Instance.GetGrid().GetGridObject(transform.position).SetIsWalkable(true);
+        Testing.Instance.soldierMovement = GetComponent<SoldierMovement>();
     }
 }

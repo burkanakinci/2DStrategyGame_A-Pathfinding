@@ -29,7 +29,7 @@ public class SoldierMovement : MonoBehaviour
         if (pathVectorList != null && pathVectorList.Count > 0)
         {
             Vector3 targetPosition = pathVectorList[currentPathIndex];
-            if ((transform.position != targetPosition) && (PathFinding.Instance.GetGrid().GetGridObject(transform.position) != PathFinding.Instance.GetGrid().GetGridObject(targetPosition)))
+            if ((Vector3.Distance(transform.position, targetPosition) > 0.1f) && (PathFinding.Instance.GetGrid().GetGridObject(transform.position) != PathFinding.Instance.GetGrid().GetGridObject(targetPosition)))
             {
                 Debug.Log(Vector3.Distance(transform.position, targetPosition));
                 Vector3 moveDir = (targetPosition - transform.position).normalized;
@@ -46,11 +46,6 @@ public class SoldierMovement : MonoBehaviour
                 }
             }
         }
-        else
-        {
-            StopMoving();
-        }
-
     }
 
     private void StopMoving()
@@ -70,10 +65,5 @@ public class SoldierMovement : MonoBehaviour
         {
             pathVectorList.RemoveAt(0);
         }
-    }
-    private void OnMouseDown()
-    {
-        PathFinding.Instance.GetGrid().GetGridObject(MouseController.Instance.GetMouseWorldPosition()).SetIsWalkable(true);
-        Testing.Instance.soldierMovement = this;
     }
 }

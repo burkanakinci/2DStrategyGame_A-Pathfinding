@@ -57,9 +57,10 @@ public class Testing : MonoBehaviour
 
                     //soldierMovement.soldierState = SoldierMovement.SoldierState.Move;
                 }
+                soldierMovement.SetTargetPosition(tempPos);
             }
 
-            soldierMovement.SetTargetPosition(tempPos);
+
         }
     }
 }
