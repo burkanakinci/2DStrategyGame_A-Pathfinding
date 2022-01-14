@@ -5,32 +5,13 @@ using UnityEngine.UI;
 public class InfiniteScroll : MonoBehaviour, IBeginDragHandler, IDragHandler, IScrollHandler
 {
     #region Private Members
-
-    /// <summary>
-    /// The ScrollContent component that belongs to the scroll content GameObject.
-    /// </summary>
     [SerializeField]
     private ScrollContent scrollContent;
 
-    /// <summary>
-    /// How far the items will travel outside of the scroll view before being repositioned.
-    /// </summary>
     [SerializeField]
     private float outOfBoundsThreshold;
-
-    /// <summary>
-    /// The ScrollRect component for this GameObject.
-    /// </summary>
     private ScrollRect scrollRect;
-
-    /// <summary>
-    /// The last position where the user has dragged.
-    /// </summary>
     private Vector2 lastDragPosition;
-
-    /// <summary>
-    /// Is the user dragging in the positive axis or the negative axis?
-    /// </summary>
     private bool positiveDrag;
 
     #endregion

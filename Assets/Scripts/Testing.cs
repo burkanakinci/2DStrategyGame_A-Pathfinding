@@ -24,44 +24,42 @@ public class Testing : MonoBehaviour
     }
     private void Start()
     {
-        soldierMovement = FindObjectOfType<SoldierMovement>();
         pathFinding = new PathFinding(10, 14, transform.position);
     }
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Mouse0))
+        if (soldierMovement != null)
         {
-
-            pathFinding.GetGrid().GetXY(MouseController.Instance.GetMouseWorldPosition(), out int x, out int y);
-
-            if (0 <= x && x < PathFinding.Instance.GetGrid().GetWidth() &&
-                0 <= y && y < PathFinding.Instance.GetGrid().GetHeight())
+            if (soldierMovement.soldierState == SoldierMovement.SoldierState.Build)
             {
-                List<PathNode> path = pathFinding.FindPath(0, 0, x, y);
+                soldierMovement.soldierState = SoldierMovement.SoldierState.Selected;
+            }
+            else if (Input.GetKeyDown(KeyCode.Mouse0) && soldierMovement.soldierState == SoldierMovement.SoldierState.Selected)
+            {
 
-                if (path != null)
+                pathFinding.GetGrid().GetXY(MouseController.Instance.GetMouseWorldPosition(), out int x, out int y);
+
+                if (0 <= x && x < PathFinding.Instance.GetGrid().GetWidth() &&
+                    0 <= y && y < PathFinding.Instance.GetGrid().GetHeight())
                 {
+                    List<PathNode> path = pathFinding.FindPath(0, 0, x, y);
 
-                    for (int i = 0; i < path.Count - 1; i++)
+                    if (path != null)
                     {
 
-                        Debug.DrawLine((new Vector3(path[i].x, path[i].y) * pathFinding.GetGrid().GetCellSize() + transform.position) + Vector3.one * pathFinding.GetGrid().GetCellSize() * 0.5f,
-                                        (new Vector3(path[i + 1].x, path[i + 1].y) * pathFinding.GetGrid().GetCellSize() + transform.position) + Vector3.one * pathFinding.GetGrid().GetCellSize() * 0.5f,
-                                        Color.black,
-                                        5f);
+                        for (int i = 0; i < path.Count - 1; i++)
+                        {
+
+                            Debug.DrawLine((new Vector3(path[i].x, path[i].y) * pathFinding.GetGrid().GetCellSize() + transform.position) + Vector3.one * pathFinding.GetGrid().GetCellSize() * 0.5f,
+                                            (new Vector3(path[i + 1].x, path[i + 1].y) * pathFinding.GetGrid().GetCellSize() + transform.position) + Vector3.one * pathFinding.GetGrid().GetCellSize() * 0.5f,
+                                            Color.black,
+                                            5f);
+                        }
                     }
+                    soldierMovement.SetTargetPosition(MouseController.Instance.GetMouseWorldPosition());
+                    soldierMovement.soldierState = SoldierMovement.SoldierState.Move;
                 }
-                soldierMovement.SetTargetPosition(MouseController.Instance.GetMouseWorldPosition());
             }
-
-
-        }
-        if (Input.GetKeyDown(KeyCode.Mouse1))
-        {
-
-            pathFinding.GetGrid().GetXY(MouseController.Instance.GetMouseWorldPosition(), out int x, out int y);
-            pathFinding.GetNode(x, y).SetIsWalkable(!pathFinding.GetNode(x, y).GetIsWalkable());
-
         }
     }
 }

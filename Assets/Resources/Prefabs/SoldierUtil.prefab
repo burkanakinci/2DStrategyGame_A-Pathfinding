@@ -10,8 +10,9 @@ GameObject:
   m_Component:
   - component: {fileID: 4913040318968884521}
   - component: {fileID: 750310212881783950}
-  - component: {fileID: 3201703428472938241}
   - component: {fileID: 1680988660003569387}
+  - component: {fileID: 3201703428472938241}
+  - component: {fileID: 7100544053155244718}
   m_Layer: 0
   m_Name: SoldierUtil
   m_TagString: Untagged
@@ -83,19 +84,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &3201703428472938241
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4621038261086527827}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d59d7c8ba7614db45a99ffe17ed937c6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  pathVectorList: []
 --- !u!61 &1680988660003569387
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -122,3 +110,30 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.32, y: 0.32}
   m_EdgeRadius: 0
+--- !u!114 &3201703428472938241
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4621038261086527827}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d59d7c8ba7614db45a99ffe17ed937c6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  soldierState: 0
+  pathVectorList: []
+--- !u!114 &7100544053155244718
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4621038261086527827}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2bd6a03f793fa264ea76e05bd7299490, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  soldierData: {fileID: 11400000, guid: d60d24934dff5d7429ea82554fd3d1bc, type: 2}

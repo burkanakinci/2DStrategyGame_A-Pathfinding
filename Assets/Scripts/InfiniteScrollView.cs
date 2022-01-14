@@ -12,6 +12,11 @@ public class InfiniteScrollView : MonoBehaviour
     private void Update()
     {
 
+
+        if (Input.GetKeyDown(KeyCode.L))
+        {
+            asdf();
+        }
         foreach (Image fff in fffs)
         {
             if (fff.gameObject.activeInHierarchy)
@@ -24,11 +29,6 @@ public class InfiniteScrollView : MonoBehaviour
                 }
             }
         }
-        if (Input.GetKeyDown(KeyCode.L))
-        {
-            asdf();
-        }
-
     }
     private void asdf()
     {

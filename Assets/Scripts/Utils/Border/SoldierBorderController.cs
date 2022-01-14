@@ -29,11 +29,12 @@ public class SoldierBorderController : MonoBehaviour, IBorder<PathNode>
             Move(x, y);
             NotWalkable(x, y);
 
-            if (Input.GetKeyDown(KeyCode.Mouse0) && canBuild)
+            if (Input.GetKeyDown(KeyCode.Mouse0) && canBuild && Testing.Instance.soldierMovement == null)
             {
                 PathFinding.Instance.GetGrid().GetGridObject(MouseController.Instance.GetMouseWorldPosition()).SetIsWalkable(false);
                 soldierFactory.SpawnBuild(transform.position, PathFinding.Instance.GetGrid().GetGridObject(MouseController.Instance.GetMouseWorldPosition()));
             }
+
         }
     }
     public void Move(int x, int y)
