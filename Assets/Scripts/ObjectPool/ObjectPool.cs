@@ -59,7 +59,6 @@ public class ObjectPool : MonoBehaviour
                 scrollPowerPlantPool[0].transform.SetParent(scrollContent);
                 scrollPowerPlantPool.Remove(scrollPowerPlantPool[0]);
                 scrollPowerPlantPool.Add(_scrollObject);
-                _scrollObject.SetActive(false);
             }
             else
             {
@@ -81,11 +80,14 @@ public class ObjectPool : MonoBehaviour
             {
                 tempTransform = Instantiate(scrollSoldiers, scrollContent).transform;
                 scrollSoldierPool.Add(_scrollObject);
+
             }
         }
 
+
         _scrollObject.transform.SetParent(null);
-        
+        _scrollObject.SetActive(false);
+
 
         return tempTransform;
     }
